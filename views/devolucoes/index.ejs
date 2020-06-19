@@ -1,0 +1,46 @@
+<%- include("../layouts/header")  %>
+<%- include("../layouts/menu")  %>
+<main role="main" class="col-10 ml-auto px-4">
+    <div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2 mb-3">
+      <h1 class="h2">Devoluções</h1>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <a type="button" class="btn btn-success" href="/bairros/new">Novo</a>
+          
+        </div>
+      </div>
+  </div>
+
+  <section class="row">
+ 
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Motivo</th>
+            <th scope="col">Chave</th>
+            <th scope="col">Chaves</th>
+            <th scope="col">Tetras</th>
+            <th scope="col">Controles</th>
+            <th scope="col">Devolução</th>
+          </tr>
+        </thead>
+        <% emprestimo.forEach(item => { %>
+          
+        <% if (item.devolucao == 'Sim') { %>
+        <tbody>  
+            <tr>
+              <th scope="row"><%= item.id %> </th>
+              <td><%= item.tipo %></td>
+              <td><%= item.chave.endereco %> </td>
+              <td><%= item.chave.qtdchavescomuns %> </td>
+              <td><%= item.chave.qtdchavestetras %> </td>
+              <td><%= item.chave.qtdcontroles %> </td>
+              <td><%= item.updatedAt %> </td>
+              <% } %>
+            </tr>          
+            
+          </tbody>
+        <% }) %>
+<%- include("../layouts/sidebar")  %>
+<%- include("../layouts/footer")  %> 

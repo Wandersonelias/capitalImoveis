@@ -1,0 +1,57 @@
+body{
+  padding-top: 50px;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: 50px 0 0;
+  box-shadow: inset -1px 0 0 rgba(0,0,0,.1);
+}
+.sidebar-heading{
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+.sidebar .nav-link{
+  font-weight: 500;
+  color: #333;
+}
+.sidebar .nav-link.active{
+  color: #007bff;
+}
+.titulo-menu{
+  padding: 5px;
+  font-weight: 600;
+}
+.chave{
+  font-size: 2rem;
+  color: yellow;
+}
+.search{
+  margin: auto;
+}
+#query{
+  width: 350px;
+}
+.card-login{
+  margin-top: 10%;
+  width: auto;
+}
+.logotipo{
+  height: 200px;
+  margin-left: -4%;
+  
+}
+.login-body{
+  background-image: url('/images/fundo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.card-header{
+  background-color: #848484;
+}

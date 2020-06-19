@@ -1,0 +1,64 @@
+<%- include('../layouts/header')  %>
+<%- include('../layouts/menu')  %> 
+<%- include('../layouts/sidebar')  %>
+
+<main role="main" class="col-10 ml-auto px-4">
+    <div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2 mb-3">
+        <h1 class="h2">Chaves encontradas</h1>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+
+            <a type="button" class="btn btn-primary" href="/chaves"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</a>
+          </div>
+        </div>
+    </div>
+
+<section class="row">
+
+<table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Endereco</th>
+          <th scope="col">Bairro</th>
+          <th scope="col">Tipo Imóvel</th>
+          <th scope="col">Chaves comuns</th>
+          <th scope="col">Chaves tetra</th>
+          <th scope="col">Controles</th>
+          <th scope="col">Situacão</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% chaves.forEach(chave => { %>
+         
+          <tr>
+            <th scope="row"><%= chave.id %> </th>
+            <td><%= chave.endereco %> </td>
+            <td><%= chave.bairro.descricao %> </td>
+            <td><%= chave.tipoimovel.descricao %></td>
+            <td><%= chave.qtdchavescomuns %></td>
+            <td><%= chave.qtdchavestetras %></td>
+            <td><%= chave.qtdcontroles %></td>
+            <td><%= chave.situacao %></td>
+
+            <td>
+                <% if (chave.situacao == 'Disponível') { %>
+                    <a href="/emprestimos/retirar/<%= chave.id %> " class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i> Protocolar</a>
+                <% } else {%>  
+                <a href="/emprestimos/devolver/<%= chave.id %>" class="btn btn-danger"><i class="fa fa-edit" aria-hidden="true"></i> Devolver</a>
+                <% } %>
+            </td>
+          </tr>
+          
+        <% }) %>
+      </tbody>
+    </table>
+    
+    
+
+</section>
+
+</main>
+
+<%- include('../layouts/footer')  %>
