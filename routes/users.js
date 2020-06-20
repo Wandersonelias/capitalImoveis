@@ -54,7 +54,10 @@ router.post('/salvar',(req,res)=>{
         
         });
 });
-
+router.get('/logout',(req,res)=>{
+  req.session.user = undefined;
+  res.redirect("/");
+});
 
 
 module.exports = router;
