@@ -4,13 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('./config/database');
+//Sesstions
+var session = require('express-session');
+
 //Models 
 
 var Bairro = require('./model/Bairro');
 var TipoImovel = require('./model/TipoImovel');
 var Chaves = require('./model/Chave');
 var Emprestimos = require('./model/Emprestimo');
-
+var User = require('./model/User');
 //Rotas
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,6 +27,13 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+//Sesstion config
+app.use(session({
+  secret: "capitalimoveis",
+  resave: true,
+  saveUninitialized: true
+}));
+
 
 app.use(logger('dev'));
 app.use(express.json());

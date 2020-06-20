@@ -4,6 +4,8 @@ const Emprestimo = require('../model/Emprestimo');
 const Chave = require('../model/Chave');
 const { Sequelize } = require('../config/database');
 const Bairro = require('../model/Bairro');
+const User = require('../model/User');
+const session = require('express-session');
 
 
 router.get('/emprestimos',(req,res)=>{
@@ -21,8 +23,21 @@ router.get('/emprestimos',(req,res)=>{
 
     }).then(emprestimo => {
         
-        res.render("emprestimos/index", {emprestimo: emprestimo});
+        res.render("emprestimos/index", {emprestimo: emprestimo, user: req.session.user});
     });
+    
+
+    /*console.log(req.session.user);
+    User.findOne({where: {login: login}}).then(user =>{
+        req.session.user = {
+            id: user.id,
+            login: user.login
+        };
+        console.log("OK");
+
+    });
+    */
+
 });
 router.get('/emprestimos/retirar/:id',(req,res)=>{
     var chaveId = req.params.id;

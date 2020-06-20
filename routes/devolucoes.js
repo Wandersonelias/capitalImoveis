@@ -23,7 +23,7 @@ router.get('/devolucoes',(req,res)=>{
 
     }).then(emprestimo => {
         
-        res.render("devolucoes/index", {emprestimo: emprestimo});
+        res.render("devolucoes/index", {emprestimo: emprestimo, user: req.session.user});
     });
 });
 

@@ -1,8 +1,5 @@
 const banco = require("../config/database");
 const User = banco.db.define('user',{
-        nome: {
-            type: banco.Sequelize.STRING,
-        },
         login: {
             type: banco.Sequelize.STRING,       
         },
@@ -12,8 +9,6 @@ const User = banco.db.define('user',{
     }    
 );
 
-User.sync({force: true});
-User.init();
-
+User.sync({force: false});
 
 module.exports = User;

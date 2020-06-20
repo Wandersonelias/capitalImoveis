@@ -5,14 +5,15 @@
       <h1 class="h2">Emprestimos em andamento</h1>
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-2" role="group" aria-label="First group">
-          <a type="button" class="btn btn-success" href="/bairros/new">Novo</a>
+          <a type="button" class="btn btn-success" href="/chaves">Novo</a>
           
         </div>
       </div>
   </div>
 
   <section class="row">
- 
+    <%= user.id %> 
+     
     <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -45,7 +46,7 @@
               </td>
               <% } %>
             </tr>          
-            
+           
           </tbody>
         <% }) %>
 <%- include("../layouts/sidebar")  %>

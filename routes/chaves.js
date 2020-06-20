@@ -16,7 +16,7 @@ router.get('/',(req,res)=>{
             where: {tipoimovelId: Sequelize.col('tipoimovel.id')}
         }]
     }).then(chaves =>{
-        res.render("chaves/index",{chaves: chaves});
+        res.render("chaves/index",{chaves: chaves,user: req.session.user});
     });
 });
 
@@ -33,7 +33,7 @@ router.post('/buscar',(req,res)=>{
             where: {tipoimovelId: Sequelize.col('tipoimovel.id')}
         }]
     }).then(chaves => {
-        res.render("chaves/busca",{chaves: chaves});
+        res.render("chaves/busca",{chaves: chaves,user: req.session.user});
     });
 });
 
@@ -41,7 +41,7 @@ router.post('/buscar',(req,res)=>{
 router.get('/new',(req,res)=>{
     TipoImovel.findAll({}).then((tipos)=>{
     Bairro.findAll({}).then((bairros)=>{
-            res.render("chaves/new",{title: "Novas",tipos: tipos, bairros: bairros}); 
+            res.render("chaves/new",{title: "Novas",tipos: tipos, bairros: bairros,user: req.session.user}); 
         });
     });
     
