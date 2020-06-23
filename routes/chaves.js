@@ -16,7 +16,9 @@ router.get('/',(req,res)=>{
             where: {tipoimovelId: Sequelize.col('tipoimovel.id')}
         }]
     }).then(chaves =>{
+        
         res.render("chaves/index",{chaves: chaves,user: req.session.user});
+        
     });
 });
 

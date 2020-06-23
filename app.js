@@ -22,6 +22,7 @@ var tiposRouter = require('./routes/tipoimovel');
 var bairrosRouter = require('./routes/bairro');
 var emprestimosRouter = require('./routes/emprestimos');
 var devolucoesRouter = require('./routes/devolucoes');
+var etiquetasRouter = require('./routes/etiquetas');
 var app = express();
 
 // view engine setup
@@ -48,6 +49,7 @@ app.use('/',tiposRouter);
 app.use('/',bairrosRouter);
 app.use('/',emprestimosRouter);
 app.use('/',devolucoesRouter);
+app.use('/',etiquetasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

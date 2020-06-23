@@ -55,3 +55,56 @@ body{
 .card-header{
   background-color: #848484;
 }
+/*Pdf*/
+.item-box-1{
+  width: 110px;
+  height: 60px;
+  border: 10px solid purple;
+  align-self: start;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-left: 2px;
+  float: left;
+}
+.item-box-2{
+  width: 110px;
+  height: 60px;
+  border: 10px solid green;
+  align-self: start;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-left: 2px;
+  float: left;
+}
+.item-box-3{
+  width: 110px;
+  height: 60px;
+  border: 10px solid blue;
+  align-self: start;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-left: 2px;
+  float: left;
+}
+.endereco{
+  font-size: 6px;
+  text-align: center;
+  font-weight: 600;
+}
+.chaves{
+  font-size: 6px;
+  text-align: center;
+  margin-top: -5px;
+}
+.controles{
+  font-size: 6px;
+  text-align: center;
+  margin-top: -5px;
+}
+.tipos{
+  font-size: 6px;
+  text-align: center;
+
+  text-transform: uppercase;
+  font-weight: bold;
+}

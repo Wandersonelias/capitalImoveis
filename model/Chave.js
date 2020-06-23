@@ -17,6 +17,9 @@ const Chave = banco.db.define('chave',{
     },
     situacao: {
         type: banco.Sequelize.ENUM('Disponível','Indisponível'),
+    },
+    gerar_etiqueta: {
+        type: banco.Sequelize.BOOLEAN,
     }
 });
 //Relacionamentos entre tabelas 

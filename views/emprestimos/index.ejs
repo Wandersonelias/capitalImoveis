@@ -41,13 +41,14 @@
               <td><%= item.chave.qtdcontroles %> </td>
               <td><%= item.createdAt %> </td>
               <td>
-                <a href="#" class="btn btn-warning">Editar</a>
+                <a href="/emprestimos/editar/<%= item.id %>" class="btn btn-warning">Editar</a>
                 <a href="/emprestimos/devolver/<%= item.chave.id %>" class="btn btn-danger">Devolver</a>
               </td>
-              <% } %>
+              <%} %>
             </tr>          
            
           </tbody>
-        <% }) %>
+          <% }) %>
+</main>
 <%- include("../layouts/sidebar")  %>
 <%- include("../layouts/footer")  %> 

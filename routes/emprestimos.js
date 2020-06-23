@@ -73,4 +73,51 @@ router.get('/emprestimos/devolver/:id',(req,res)=>{
             )},
             res.redirect("/devolucoes"));
 });
+router.get('/emprestimos/editar/:id',(req,res)=>{
+    var id = req.params.id;
+    Emprestimo.findOne({where: {id: id, devolucao: 'Não'},
+        attributes: [
+            'id',
+            'tipo',
+            'devolucao',
+            'obs',
+            [Sequelize.fn('date_format', Sequelize.col('emprestimo.createdAt'), '%d/%m/%Y ás %T'), 'createdAt']
+        ],
+        
+        include:[{
+            model: Chave,
+            where: { chaveId: Sequelize.col('chave.id')},
+            
+        }],
+        
+
+    }).then(emprestimo => {
+        res.render("emprestimos/edit", {emprestimo: emprestimo, user: req.session.user});
+    });
+
+    
+    
+});
+router.post('/emprestimos/salvar/:id',(req,res)=>{
+    var id = req.params.id;
+    var obs = req.body.obs;
+    var tipo = req.body.tipo;
+    //console.log(obs, tipo);
+    Emprestimo.update({obs: obs, tipo: tipo},{where: {id: id}})
+    .then(()=>{
+        res.redirect("/emprestimos");
+        //res.render("emprestimos/index", {emprestimo: emprestimo, user: req.session.user});
+    });
+    
+    
+        
+});
+    
+
+    
+    
+
+
+
+
 module.exports = router;

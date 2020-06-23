@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="style.css">
+<style>
+    .item-box-1{
+        width: 4cm;
+        height: 2cm;
+        border: 10px solid purple;
+        align-self: start;
+        margin-top: 5px;
+        margin-right: 2px;
+        margin-left: 2px;
+        float: left;
+    }
+    .item-box-2{
+        width: 4cm;
+        height: 2cm;
+        border: 10px solid green;
+        align-self: start;
+        margin-top: 5px;
+        margin-right: 2px;
+        margin-left: 2px;
+        float: left;
+    }
+    .item-box-3{
+        width: 4cm;
+        height: 2cm;
+        border: 10px solid blue;
+        align-self: start;
+        margin-top: 5px;
+        margin-right: 2px;
+        margin-left: 2px;
+        float: left;
+    }
+    .endereco{
+        font-size: 7pt;
+        text-align: center;
+        font-weight: 600;
+    }
+    .chaves{
+        font-size: 7pt;
+        text-align: center;
+        margin-top: -5px;
+    }
+    .controles{
+        font-size: 7pt;
+        text-align: center;
+        margin-top: -3px;
+        margin-bottom: 0px;
+    }
+
+</style>
+<% chaves.forEach(chave => { %>
+     <% if (chave.tipoimovel.descricao === "Casa") { %>
+      
+        <div class="item-box-1">
+            <p class="endereco"><%= chave.endereco %> - <%= chave.bairro.descricao %></p>  
+            
+            <p class="chaves"><b>Chaves: </b><%= chave.qtdchavescomuns %> <b>Tetra: </b><%= chave.qtdchavestetras %></p>
+            <p class="controles"><b>Controles: </b> <%= chave.qtdcontroles %></p>
+            
+        </div>
+    <% } %>
+
+    <% if (chave.tipoimovel.descricao === "Apartamento") { %>
+      
+        <div class="item-box-2">
+            <p class="endereco"><%= chave.endereco %> - <%= chave.bairro.descricao %></p>  
+            
+            <p class="chaves"><b>Chaves: </b><%= chave.qtdchavescomuns %> <b>Tetra: </b><%= chave.qtdchavestetras %></p>
+            <p class="controles"><b>Controles: </b> <%= chave.qtdcontroles %></p>
+            
+        </div>
+    <% } %>
+    <% if (chave.tipoimovel.descricao === "Sala") { %>
+      
+        <div class="item-box-3">
+            <p class="endereco"><%= chave.endereco %> - <%= chave.bairro.descricao %></p>  
+            
+            <p class="chaves"><b>Chaves: </b><%= chave.qtdchavescomuns %> <b>Tetra: </b><%= chave.qtdchavestetras %></p>
+            <p class="controles"><b>Controles: </b> <%= chave.qtdcontroles %></p>
+            
+        </div>
+    <% } %>
+      
+<% }) %>
+
+

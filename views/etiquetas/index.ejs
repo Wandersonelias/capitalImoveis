@@ -1,0 +1,61 @@
+<%- include('../layouts/header') %>
+<%- include('../layouts/menu') %>
+<%- include('../layouts/sidebar') %>  
+<main role="main" class="col-10 ml-auto px-4">
+<div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2 mb-3">
+    <h1 class="h2">Impressão de etiquetas</h1>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a type="button" class="btn btn-primary" href="/emprestimos"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</a>
+        <a type="button" class="btn btn-dark" target="_blank" href="/etiquetas/imprimir"><i class="fa fa-print" aria-hidden="true"></i> Gerar etiquetas</a>
+      </div>
+    </div>
+</div>
+<!--section da main-->
+<section class="row">
+      <div class="col-12">
+        
+        <form action="/chaves/buscar" method="POST" class="form-inline">
+          <div class="form-group mx-sm mb-3 search">
+            <input type="text" name="query" id="query" placeholder="Buscar chaveiros" class="form-control">
+            <button class="btn btn-success ml-2"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
+          </div>
+        </form>
+      </div>
+
+  <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Endereco</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Tipo Imóvel</th>
+            <th scope="col">Chaves comuns</th>
+            <th scope="col">Chaves tetra</th>
+            <th scope="col">Controles</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% chaves.forEach(chave => { %>
+           <% if (chave.gerar_etiqueta == true) { %>
+            
+            <tr>
+              <th scope="row"><%= chave.id %> </th>
+              <td><%= chave.endereco %> </td>
+              <td><%= chave.bairro.descricao %> </td>
+              <td><%= chave.tipoimovel.descricao %></td>
+              <td><%= chave.qtdchavescomuns %></td>
+              <td><%= chave.qtdchavestetras %></td>
+              <td><%= chave.qtdcontroles %></td>
+              
+              <td>
+                <a href="/etiquetas/remover/<%= chave.id %>" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</a>
+              </td>
+            </tr>
+            
+           <% } %>
+          <% }) %>
+        </tbody>
+      </table>
+      <%- include('../layouts/footer') %>  
