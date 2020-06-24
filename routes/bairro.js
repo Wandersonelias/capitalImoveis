@@ -19,6 +19,11 @@ router.post('/salvarbairro',(req,res)=>{
     });
 });
 
-
+router.get('/bairros/edit/:id',(req,res)=>{
+    var id = req.params.id;
+    Bairro.findOne({where: {id: id}}).then((bairro)=>{
+        
+    });
+});
 
 module.exports = router;

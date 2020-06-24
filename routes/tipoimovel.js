@@ -17,5 +17,30 @@ router.post('/salvar',(req,res)=>{
         res.redirect("/tiposimoveis");
     });
 });
+//Rota edit
+
+router.get('/tiposimoveis/edit/:id',(req,res)=>{
+    var id = req.params.id;
+    TipoImovel.findOne({where: {id: id}}).then((tipoimovel)=>{
+        res.render("tiposimoveis/edit",{tipoimovel: tipoimovel,user: req.session.user});
+    });
+
+});
+router.post('/atualizar/:id',(req,res) => {
+    var id = req.params.id;
+    var descricao = req.body.descricao;
+    TipoImovel.update({descricao: descricao}, {where: {id: id}}).then(()=>{
+        res.redirect("/emprestimos");
+    });
+});
+
+router.get('/tiposimoveis/delete/:id',(req,res)=>{
+    var id = req.params.id;
+    TipoImovel.destroy({where:{
+        id: id
+    }}).then(()=>{
+        res.redirect("/tiposimoveis");
+    })
+});
 
 module.exports = router;
