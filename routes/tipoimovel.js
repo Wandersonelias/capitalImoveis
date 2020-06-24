@@ -26,11 +26,11 @@ router.get('/tiposimoveis/edit/:id',(req,res)=>{
     });
 
 });
-router.post('/atualizar/:id',(req,res) => {
+router.post('/tiposimoveis/atualizar/:id',(req,res) => {
     var id = req.params.id;
     var descricao = req.body.descricao;
     TipoImovel.update({descricao: descricao}, {where: {id: id}}).then(()=>{
-        res.redirect("/emprestimos");
+        res.redirect("/tiposimoveis");
     });
 });
 

@@ -19,10 +19,10 @@
       <div class="card">
         <div class="card-header">Editar</div>
         <br>
-        <form class="col-6" method="POST" action="/salvarbairro">
+        <form class="col-6" method="POST" action="/bairros/atualizar/<%= bairro.id%>">
           <div class="form-group">
             <label for="descricao">Descrição:</label>
-            <input type="text" class="form-control" id="descricao" name="descricao" aria-describedby="emailHelp" placeholder="Ex: Centro, Santa Rita, Pacoval">
+            <input type="text" class="form-control" id="descricao" name="descricao" value="<%= bairro.descricao %>" aria-describedby="emailHelp" placeholder="Ex: Centro, Santa Rita, Pacoval">
           </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>

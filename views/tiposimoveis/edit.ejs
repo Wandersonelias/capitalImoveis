@@ -18,7 +18,7 @@
       <div class="card">
         <div class="card-header">Editar</div>
         <br>
-        <form class="col-6" method="POST" action="/salvar">
+        <form class="col-6" method="POST" action="/tiposimoveis/atualizar/<%= tipoimovel.id %>">
           <div class="form-group">
             <label for="descricao">Descrição:</label>
             <input type="text" class="form-control" id="descricao" name="descricao" value="<%= tipoimovel.descricao %>"   aria-describedby="emailHelp" placeholder="Ex: Apartamento, Casa, Galpão, etc">

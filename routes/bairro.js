@@ -22,8 +22,24 @@ router.post('/salvarbairro',(req,res)=>{
 router.get('/bairros/edit/:id',(req,res)=>{
     var id = req.params.id;
     Bairro.findOne({where: {id: id}}).then((bairro)=>{
-        
+        res.render("bairros/edit",{bairro: bairro,user: req.session.user});     
     });
+});
+router.post('/bairros/atualizar/:id',(req,res)=>{
+    var id = req.params.id;
+    var descricao = req.body.descricao;
+    Bairro.update({descricao: descricao},{where: {
+        id: id
+    }}).then(()=>{
+        res.redirect('/bairros');
+    });
+})
+
+router.get('/bairros/delete/:id',(req,res)=>{
+    var id = req.params.id;
+    Bairro.destroy({where: {id: id}}).then(()=>{
+        res.redirect('/bairros');
+    })
 });
 
 module.exports = router;
