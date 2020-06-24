@@ -1,66 +1,65 @@
-<%- include('../layouts/header') %>
-<%- include('../layouts/menu') %>
-<%- include('../layouts/sidebar') %>  
+<%- include('../layouts/header')  %>
+<%- include('../layouts/menu')  %>
+<%- include('../layouts/sidebar')  %> 
 <main role="main" class="col-10 ml-auto px-4">
-<div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2 mb-3">
+  <div class="d-flex justify-content-between align-items-center mt-4 border-bottom pb-2 mb-3">
     <h1 class="h2">Chaves</h1>
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
       <div class="btn-group mr-2" role="group" aria-label="First group">
-        <a type="button" class="btn btn-success" href="/chaves/new"><i class="fa fa-plus" aria-hidden="true"></i> Cadastrar</a>
+        <a class="btn btn-primary" href="/chaves"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</a>
       </div>
     </div>
 </div>
 <!--section da main-->
 <section class="row">
-      <div class="col-12">
-        
-        <form action="/chaves/buscar" method="POST" class="form-inline">
-          <div class="form-group mx-sm mb-3 search">
-            <input type="text" name="query" id="query" placeholder="Buscar chaveiros" class="form-control">
-            <button class="btn btn-success ml-2"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
-          </div>
-        </form>
-      </div>
-
-  <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Endereco</th>
-            <th scope="col">Bairro</th>
-            <th scope="col">Tipo Imóvel</th>
-            <th scope="col">Chaves comuns</th>
-            <th scope="col">Chaves tetra</th>
-            <th scope="col">Controles</th>
-            <th scope="col">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% chaves.forEach(chave => { %>
-            
-            <tr>
-              <th scope="row"><%= chave.id %> </th>
-              <td><%= chave.endereco %> </td>
-              <td><%= chave.bairro.descricao %> </td>
-              <td><%= chave.tipoimovel.descricao %></td>
-              <td><%= chave.qtdchavescomuns %></td>
-              <td><%= chave.qtdchavestetras %></td>
-              <td><%= chave.qtdcontroles %></td>
-              <td>
-                <a href="/chaves/edit/<%= chave.id %>" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
-                <a href="/chaves/delete/<%= chave.id %>" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Excluir</a>
-                <% if (chave.gerar_etiqueta != true) { %>
-                <a href="/etiquetas/gerar/<%= chave.id %> " class="btn btn-info"><i class="fa fa-print" aria-hidden="true"></i> Imprimir</a>
-                <% } %>
-              </td>
-            </tr>
-            
+ 
+<div class="col-12"> 
+  <div class="card">
+    <div class="card-header">Editar chaves</div>
+    <br>
+    <form class="col-6" method="POST" action="/chaves/atualizar/<%= chave.id %>">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Endereço imóvel:</label>
+        <input type="text" name="endereco" value="<%= chave.endereco %>"class="form-control" id="exampleInputText1" aria-describedby="emailHelp">
+    </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="exampleInputPassword1">Tipo imóvel:</label>
+          <select name="tipoimovel" class="form-control" id="">
+          <% tipos.forEach(tipo => { %>
+              <option value="<%= tipo.id %> " class="form-control"><%= tipo.descricao %> </option>
           <% }) %>
-        </tbody>
-      </table>
-      
-      
- <!--        <div class="col-9 ml-auto"> 
+          </select>
+        </div>
+        <div class="form-group col-6">
+          <label for="exampleInputPassword1">Bairro:</label>
+          <select name="bairro" class="form-control" id="">
+            <% bairros.forEach(bairro => { %>
+                <option value="<%= bairro.id %> " class="form-control"><%= bairro.descricao %> </option>
+            <% }) %>
+            </select>
+        </div>
+      <!-- foms chaves-->
+      <div class="form-group col-4">
+        <label for="exampleInputPassword1">Chaves comuns:</label>
+        <input type="text" name="chavescomuns" class="form-control" value="<%= chave.qtdchavescomuns %>" id="exampleInputText1" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group col-4">
+        <label for="exampleInputPassword1">Chaves tetras:</label>
+        <input type="text" name="chavestetra" class="form-control" value="<%= chave.qtdchavestetras %>" id="exampleInputText1" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group col-4">
+        <label for="exampleInputPassword1">Controles:</label>
+          <input type="text" name="controles" class="form-control" value="<%= chave.qtdcontroles %>" id="exampleInputText1" aria-describedby="emailHelp">  
+      </div>
+      <input type="hidden" name="situacao" id="" value="Disponível">
+      </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+    <br>
+  </div>
+</div>
+  <!--        <div class="col-9 ml-auto"> 
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
@@ -120,9 +119,8 @@
 </section>
 
 </main>
-<%- include('../layouts/footer') %>
 
 
 
-
+<%- include('../layouts/footer')  %>
 

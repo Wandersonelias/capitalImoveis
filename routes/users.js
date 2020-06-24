@@ -54,6 +54,12 @@ router.post('/salvar',(req,res)=>{
         
         });
 });
+router.get('/delete/:id',(req, res) => {
+  var id = req.params.id;
+  User.destroy({where: {id:id}}).then(()=>{
+    res.redirect('/users');
+  })
+});
 router.get('/logout',(req,res)=>{
   req.session.user = undefined;
   res.redirect("/");

@@ -40,7 +40,7 @@ router.get('/tiposimoveis/delete/:id',(req,res)=>{
         id: id
     }}).then(()=>{
         res.redirect("/tiposimoveis");
-    })
+    });
 });
 
 module.exports = router;

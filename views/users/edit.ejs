@@ -1,0 +1,50 @@
+<%- include('../layouts/header') %>
+    <body class="login-body">
+        
+        <div class="container">
+            <main role="main" class="col-12">
+                <div class="row">
+                    <div class="col-3"></div>
+
+                    <div class="col-6">
+                        <img src="/images/Logo.png" class="logotipo" alt="logomarca">
+                    </div>
+                    <div class="col-3"></div>
+
+                </div>
+                <section class="row">
+                    
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        
+                        <div class="card card-login">
+                            <div class="card-header text-center">
+                                <b>LOGIN DE USUÁRIO</b>
+                            </div>
+                            <div class="card-body">
+                                <form action="/users/validar" class="form-login" method="post">
+                                    <label for="nome">Login:</label><br>
+                                    <input type="text" name="login" class="form-control" id="">
+                                    <label for="senha" class="mt-2">Senha:</label><br>
+                                    <input type="password" name="password" class="form-control" id=""><br>
+                                    
+                                    <button class="btn btn-primary btn-block">ENTRAR</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3"></div>
+                </section>
+                <section class="text-center">
+                    <br>
+                    <p>Procure o administrador do sistema para criação de seu login e senha.</p>
+
+                    <script>
+
+                    </script>
+                </section>
+            </main>
+        </div>
+    </body>
+
+    <%- include('../layouts/footer') %>

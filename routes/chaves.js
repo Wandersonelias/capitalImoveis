@@ -4,6 +4,8 @@ var TipoImovel = require('../model/TipoImovel');
 var Bairro = require('../model/Bairro');
 const Chave = require('../model/Chave');
 const { Sequelize } = require('../config/database');
+const { render } = require('ejs');
+
 const Op = Sequelize.Op;
 
 router.get('/',(req,res)=>{
@@ -73,5 +75,54 @@ router.post('/salvar_chave',(req,res)=>{
     });
 });
 
+//Editar chaves
 
+router.get('/edit/:id',(req,res)=>{
+    var id = req.params.id;
+    Chave.findOne({
+        where: {id: id},
+        include:[{
+            model: Bairro,
+            where: {bairroId: Sequelize.col('bairro.id')}
+        },{
+            model: TipoImovel,
+            where: {tipoimovelId: Sequelize.col('tipoimovel.id')}
+        }]
+    }).then((chave) =>{ 
+        TipoImovel.findAll({}).then(tipos =>{
+            Bairro.findAll({}).then(bairros =>{
+                res.render("chaves/edit",{chave: chave,tipos: tipos, bairros: bairros,user: req.session.user});
+            });
+
+        });
+    });
+});
+
+router.post('/atualizar/:id',(req, res)=>{
+    var id = req.params.id;
+    var endereco = req.body.endereco;
+    var tipoimovel = req.body.tipoimovel;
+    var bairro = req.body.bairro;
+    var chavescomuns = req.body.chavescomuns;
+    var chavestetra = req.body.chavestetra;
+    var controles = req.body.controles;
+    Chave.update({
+        endereco: endereco, 
+        qtdchavescomuns: chavescomuns, 
+        qtdchavestetras: chavestetra,
+        qtdcontroles: controles,
+        tipoimovelId: tipoimovel,
+        bairroId: bairro
+    }, {where:{id: id}}).then(()=>{
+        res.redirect("/chaves");
+    });
+});
+
+router.get('/delete/:id',(req,res) =>{
+    var id = req.params.id;
+
+    Chave.destroy({where: {id: id}}).then(()=>{
+        res.redirect('/chaves');
+    });
+});
 module.exports = router;
