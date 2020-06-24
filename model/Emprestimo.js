@@ -1,5 +1,6 @@
 const banco = require('../config/database');
 const Chave = require('../model/Chave');
+const User = require('../model/User');
 const Emprestimo = banco.db.define('emprestimo',{
     tipo: {
         type: banco.Sequelize.ENUM('Visita', 'Serviço', 'Locatario','Propritario')
@@ -14,12 +15,17 @@ const Emprestimo = banco.db.define('emprestimo',{
 });
 
 
-
-
 Emprestimo.belongsTo(Chave);
 Chave.hasMany(Emprestimo,
     {foreign: 'chaveId'
 });
+
+Emprestimo.belongsTo(User);
+User.hasMany(Emprestimo,{
+     foreign: 'userId'
+});
+
+
 
 
 

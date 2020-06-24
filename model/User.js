@@ -1,4 +1,5 @@
 const banco = require("../config/database");
+const Emprestimo = require('../model/Emprestimo');
 const User = banco.db.define('user',{
         login: {
             type: banco.Sequelize.STRING,       
@@ -8,6 +9,9 @@ const User = banco.db.define('user',{
         }
     }    
 );
+
+
+
 
 User.sync({force: false});
 

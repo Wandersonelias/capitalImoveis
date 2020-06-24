@@ -19,7 +19,12 @@ router.get('/emprestimos',(req,res)=>{
         include:[{
             model: Chave,
             where: { chaveId: Sequelize.col('chave.id')}
+        },{
+            model: User,
+            where: { userId: Sequelize.col('user.id')}
         }],
+        
+        
 
     }).then(emprestimo => {
         
@@ -40,12 +45,14 @@ router.get('/emprestimos',(req,res)=>{
 
 });
 router.get('/emprestimos/retirar/:id',(req,res)=>{
+    
     var chaveId = req.params.id;
     var tipo = 'Visita';
-    var obs = "Em visita";
+    var obs = "";
     var devolucao = 'Não';
+    
     Emprestimo.create(
-        { tipo: tipo, obs: obs, devolucao: devolucao, chaveId: chaveId }
+        { tipo: tipo, obs: obs, devolucao: devolucao, chaveId: chaveId, userId: parseInt(req.session.user.id) }
         
         ).then(()=>{
             Chave.update(

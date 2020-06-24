@@ -11,14 +11,12 @@
       </div>
   </div>
 
-  <section class="row">
-    <%= user.id %> 
-     
+  <section class="row"> 
     <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Id</th>
             <th scope="col">Motivo</th>
+            <th scope="col">Usuário</th>
             <th scope="col">Chave</th>
             <th scope="col">Chaves</th>
             <th scope="col">Tetras</th>
@@ -29,12 +27,12 @@
         </thead>
         <% emprestimo.forEach(item => { %>
           
-        <% if (item.devolucao == 'Não') { %>
+        <%# if (item.devolucao == "Sim") { %>
         <tbody>
            
             <tr>
-              <th scope="row"><%= item.id %> </th>
               <td><%= item.tipo %></td>
+              <td><b><%= item.user.login %></b></td>
               <td><%= item.chave.endereco %> </td>
               <td><%= item.chave.qtdchavescomuns %> </td>
               <td><%= item.chave.qtdchavestetras %> </td>
@@ -44,7 +42,7 @@
                 <a href="/emprestimos/editar/<%= item.id %>" class="btn btn-warning">Editar</a>
                 <a href="/emprestimos/devolver/<%= item.chave.id %>" class="btn btn-danger">Devolver</a>
               </td>
-              <%} %>
+              <%#} %>
             </tr>          
            
           </tbody>
