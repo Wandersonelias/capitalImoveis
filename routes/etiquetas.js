@@ -29,6 +29,7 @@ router.get('/etiquetas',(req, res)=>{
 router.get('/etiquetas/imprimir',(req,res)=> {
     
     var config = {
+        "directory": "/tmp",
         "format": "A4",        // allowed units: A3, A4, A5, Legal, Letter, Tabloid
         "orientation": "portrait", // portrait or landscape
         "border": {
@@ -38,10 +39,7 @@ router.get('/etiquetas/imprimir',(req,res)=> {
             "left": "0.8cm"
 
           },
-          "phantomPath": "./node_modules/phantomjs/bin/phantomjs", // PhantomJS binary which should get downloaded automatically
-          "phantomArgs": [], // array of strings used as phantomjs args e.g. ["--ignore-ssl-errors=yes"]
-          "script": '/url',           // Absolute path to a custom phantomjs script, use the file in lib/scripts as example
-          "timeout": 30000, 
+         
     }
     
     
@@ -61,14 +59,20 @@ router.get('/etiquetas/imprimir',(req,res)=> {
         ejs.renderFile(path.join(__dirname, '../views/imprimir', "template.ejs"), {chaves: chaves}, (err, data) => {
             if(err) return res.send(err);
             var arquivo = 'tmp/etiquetas.pdf'; 
-            pdf.create(data,config).toFile(arquivo,function(err, data){
+            
+            pdf.create(data,config).toStream(function (err,stream) {
+                stream.pipe(fs.createWriteStream(arquivo));
+            });
+            /*pdf.create(data,config).toFile(arquivo,function(err, data){
                 if(err) return res.send(err);
                 res.type("application/pdf");
                 var stream = fs.createReadStream(arquivo);
                 stream.on("end",() => fs.unlink(arquivo,()=> console.log("Arquivo removido")));
                 stream.pipe(res);    
                 
-            });    
+            });*/
+            
+            
         });
         
     
