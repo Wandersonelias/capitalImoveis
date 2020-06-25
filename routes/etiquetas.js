@@ -8,6 +8,7 @@ const pdf = require('html-pdf');
 const ejs = require('ejs');
 let path = require("path");
 const fs = require('fs');
+const { on } = require('process');
 router.get('/etiquetas',(req, res)=>{
 
     Chave.findAll({
@@ -54,11 +55,14 @@ router.get('/etiquetas/imprimir',(req,res)=> {
 
         ejs.renderFile(path.join(__dirname, '../views/imprimir', "template.ejs"), {chaves: chaves}, (err, data) => {
             if(err) return res.send(err);
-            pdf.create(data,config).toFile('tmp/etiquetas.pdf',function(err, data){
-                fs.readFile( 'tmp/etiquetas.pdf', function (err,data){
-                res.contentType("application/pdf");
-                res.send(data);
-                });
+            var arquivo = 'tmp/etiquetas.pdf'; 
+            pdf.create(data,config).toFile(arquivo,function(err, data){
+                if(err) return res.send(err);
+                res.type("application/pdf");
+                var stream = fs.createReadStream(arquivo);
+                stream.on("end",() => fs.unlink(arquivo,()=> console.log("Arquivo removido")));
+                stream.pipe(res);    
+                
             });    
         });
         
