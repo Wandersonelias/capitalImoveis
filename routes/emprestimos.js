@@ -84,7 +84,7 @@ router.get('/emprestimos/devolver/:id/:chaveId',(req,res)=>{
                     }}
             )},
             res.redirect("/emprestimos"));
-            console.log("Teste chave id:" + chaveId);
+            //console.log("Teste chave id:" + chaveId);
 });
 
 //Editar tarara

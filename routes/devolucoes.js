@@ -4,6 +4,7 @@ const Emprestimo = require('../model/Emprestimo');
 const Chave = require('../model/Chave');
 const { Sequelize } = require('../config/database');
 const Bairro = require('../model/Bairro');
+const User = require('../model/User');
 
 
 router.get('/devolucoes',(req,res)=>{
@@ -19,6 +20,9 @@ router.get('/devolucoes',(req,res)=>{
         include:[{
             model: Chave,
             where: { chaveId: Sequelize.col('chave.id')}
+        },{
+            model: User,
+            where: { userId: Sequelize.col('user.id')}
         }],
 
     }).then(emprestimo => {

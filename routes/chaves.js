@@ -112,7 +112,7 @@ router.get('/devolver_chave/:id',(req, res)=>{
                         }}).then(()=>{
 
                         })
-                console.log(emprestimo);
+                res.redirect("/chaves");
     });
     
 });
