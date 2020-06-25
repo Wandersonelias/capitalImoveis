@@ -62,6 +62,10 @@ router.get('/etiquetas/imprimir',(req,res)=> {
             
             pdf.create(data,config).toStream(function (err,stream) {
                 stream.pipe(fs.createWriteStream(arquivo));
+                res.type("application/pdf");
+                fs.createReadStream(arquivo);
+                stream.pipe(res);
+                
             });
             /*pdf.create(data,config).toFile(arquivo,function(err, data){
                 if(err) return res.send(err);
