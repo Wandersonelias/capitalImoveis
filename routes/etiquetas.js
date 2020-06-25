@@ -36,7 +36,12 @@ router.get('/etiquetas/imprimir',(req,res)=> {
             "right": "0.8cm",
             "bottom": "1cm",
             "left": "0.8cm"
+
           },
+          "phantomPath": "./node_modules/phantomjs/bin/phantomjs", // PhantomJS binary which should get downloaded automatically
+          "phantomArgs": [], // array of strings used as phantomjs args e.g. ["--ignore-ssl-errors=yes"]
+          "script": '/url',           // Absolute path to a custom phantomjs script, use the file in lib/scripts as example
+          "timeout": 30000, 
     }
     
     
