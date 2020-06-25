@@ -12,8 +12,8 @@ router.get('/devolucoes',(req,res)=>{
             'id',
             'tipo',
             'devolucao',
-            [Sequelize.fn('date_format', Sequelize.col('emprestimo.createdAt'), '%d/%m/%Y ás %T'), 'createdAt'],
-            [Sequelize.fn('date_format', Sequelize.col('emprestimo.updatedAt'), '%d/%m/%Y ás %T'), 'updatedAt']
+            [Sequelize.fn('date_format', Sequelize.col('emprestimo.createdAt'), '%d/%m/%Y'), 'createdAt'],
+            [Sequelize.fn('date_format', Sequelize.col('emprestimo.updatedAt'), '%d/%m/%Y'), 'updatedAt']
             
         ],
         include:[{

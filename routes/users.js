@@ -54,6 +54,24 @@ router.post('/salvar',(req,res)=>{
         
         });
 });
+router.get('/edit/:id',(req,res)=>{
+  res.render('users/edit',{user: req.session.user});
+});
+router.post('/atualizar/:id',(req,res)=>{
+        var id = req.params.id;
+        var login = req.body.login;
+        var password = req.body.password;
+        User.findOne({where: {id: id}}).then(user =>{
+            var salt = bcrypt.genSaltSync(10);
+            var hash = bcrypt.hashSync(password, salt);
+            User.update({login: login, password: hash}).then(() => {
+                res.redirect("/users/listar");
+              });
+    
+              
+                
+        });
+});
 router.get('/delete/:id',(req, res) => {
   var id = req.params.id;
   User.destroy({where: {id:id}}).then(()=>{

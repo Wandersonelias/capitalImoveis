@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 var TipoImovel = require('../model/TipoImovel');
 var Bairro = require('../model/Bairro');
+var Emprestimo = require('../model/Emprestimo');
 const Chave = require('../model/Chave');
 const { Sequelize } = require('../config/database');
 const { render } = require('ejs');
+
 
 const Op = Sequelize.Op;
 
@@ -98,6 +100,23 @@ router.get('/edit/:id',(req,res)=>{
     });
 });
 
+
+router.get('/devolver_chave/:id',(req, res)=>{
+    var id = req.params.id;
+    Emprestimo.update({ devolucao: "Sim", userId: parseInt(req.session.user.id) },
+                {where: {chaveId: id}})
+                .then((emprestimo) =>{
+                    Chave.update({situacao: 'Disponível'},
+                        {where: {
+                            id: id
+                        }}).then(()=>{
+
+                        })
+                console.log(emprestimo);
+    });
+    
+});
+
 router.post('/atualizar/:id',(req, res)=>{
     var id = req.params.id;
     var endereco = req.body.endereco;
@@ -125,4 +144,5 @@ router.get('/delete/:id',(req,res) =>{
         res.redirect('/chaves');
     });
 });
+
 module.exports = router;

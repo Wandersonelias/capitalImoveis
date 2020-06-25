@@ -47,7 +47,7 @@
                     <a href="/emprestimos/retirar/<%= chave.id %> " class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i> Protocolar</a>
                     <a href="/etiquetas/gerar/<%= chave.id %> " class="btn btn-info"><i class="fa fa-print" aria-hidden="true"></i> Imprimir</a>
                   <% } else {%>  
-                <a href="/emprestimos/devolver/<%= chave.id %>" class="btn btn-danger"><i class="fa fa-edit" aria-hidden="true"></i> Devolver</a>
+                <a href="/chaves/devolver_chave/<%= chave.id %>" class="btn btn-danger"><i class="fa fa-edit" aria-hidden="true"></i> Devolver</a>
                 <% } %>
             </td>
           </tr>

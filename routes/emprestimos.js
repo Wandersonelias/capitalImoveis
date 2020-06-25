@@ -14,7 +14,7 @@ router.get('/emprestimos',(req,res)=>{
             'id',
             'tipo',
             'devolucao',
-            [Sequelize.fn('date_format', Sequelize.col('emprestimo.createdAt'), '%d/%m/%Y ás %T'), 'createdAt']
+            [Sequelize.fn('date_format', Sequelize.col('emprestimo.createdAt'), '%d/%m/%Y %H:%m:%s'), 'createdAt']
         ],
         include:[{
             model: Chave,
@@ -48,11 +48,10 @@ router.get('/emprestimos/retirar/:id',(req,res)=>{
     
     var chaveId = req.params.id;
     var tipo = 'Visita';
-    var obs = "";
-    var devolucao = 'Não';
+    var obs = "Em visita";
     
     Emprestimo.create(
-        { tipo: tipo, obs: obs, devolucao: devolucao, chaveId: chaveId, userId: parseInt(req.session.user.id) }
+        { tipo: tipo, obs: obs, devolucao: "Não", chaveId: chaveId, userId: parseInt(req.session.user.id) }
         
         ).then(()=>{
             Chave.update(
@@ -63,23 +62,33 @@ router.get('/emprestimos/retirar/:id',(req,res)=>{
             )},
             res.redirect("/emprestimos"));
 });
-router.get('/emprestimos/devolver/:id',(req,res)=>{
-    var chaveId = req.params.id;
+router.get('/emprestimos/devolver/:id/:chaveId',(req,res)=>{
+    var id = req.params.id;
+    var chaveId = req.params.chaveId;
     var tipo = 'Visita';
     var obs = "";
-    var devolucao = 'Sim';
-    Emprestimo.create(
-        { tipo: tipo, obs: obs, devolucao: devolucao,chaveId: chaveId }
+    
+    Emprestimo.update(
+        { devolucao: "Sim", userId: parseInt(req.session.user.id) },{
+            where:{
+                id: id,
+                chaveId: chaveId 
+            }
+        }
         
         ).then(()=>{
             Chave.update(
-                    {situacao: 'Disponivel'},
+                    {situacao: 'Disponível'},
                     {where: {
                         id: chaveId
                     }}
             )},
-            res.redirect("/devolucoes"));
+            res.redirect("/emprestimos"));
+            console.log("Teste chave id:" + chaveId);
 });
+
+//Editar tarara
+
 router.get('/emprestimos/editar/:id',(req,res)=>{
     var id = req.params.id;
     Emprestimo.findOne({where: {id: id, devolucao: 'Não'},
