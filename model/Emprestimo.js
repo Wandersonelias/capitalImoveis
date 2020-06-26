@@ -44,7 +44,7 @@ User.hasMany(Emprestimo,{
 
 
 
-Emprestimo.sync({force: false});
+Emprestimo.sync({force: true});
 
 
 module.exports = Emprestimo;

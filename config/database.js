@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
             'capitalimoveis', //capital
             'capitalchaves',//wandersonelias
             'capital1010',{ //regina10
-            host: 'mysql669.umbler.com', // 'mysql669.umbler.com', //'localhost',
+            host: 'localhost', // 'mysql669.umbler.com', //'localhost',
             dialect: 'mysql'
         });
         db.authenticate().then(()=>{
