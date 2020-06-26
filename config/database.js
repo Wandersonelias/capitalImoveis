@@ -2,9 +2,9 @@ const Sequelize = require('sequelize');
 
         const db = new Sequelize(
             'capital', //capital
-            'wandersonelias',//wandersonelias
-            'regina10',{ //regina10
-            host: 'mysql669.umbler.com', //'localhost',
+            'wanderson',//wandersonelias
+            'regina',{ //regina10
+            host: 'localhost', // 'mysql669.umbler.com', //'localhost',
             dialect: 'mysql'
         });
         db.authenticate().then(()=>{

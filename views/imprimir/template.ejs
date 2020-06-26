@@ -1,34 +1,37 @@
 <link rel="stylesheet" href="style.css">
 <style>
     .item-box-1{
-        width: 4cm;
-        height: 2cm;
-        border: 10px solid purple;
+        width: 3.5cm;
+        height: 2.5cm;
+        border: 10px inset solid purple;
         align-self: start;
         margin-top: 5px;
         margin-right: 2px;
         margin-left: 2px;
         float: left;
+        padding: 0px;
     }
     .item-box-2{
-        width: 4cm;
-        height: 2cm;
+        width: 3.5cm;
+        height: 2.5cm;
         border: 10px solid green;
         align-self: start;
         margin-top: 5px;
         margin-right: 2px;
         margin-left: 2px;
         float: left;
+        padding: 0px;
     }
     .item-box-3{
-        width: 4cm;
-        height: 2cm;
+        width: 3.5cm;
+        height: 2.5cm;
         border: 10px solid blue;
         align-self: start;
         margin-top: 5px;
         margin-right: 2px;
         margin-left: 2px;
         float: left;
+        padding: 0px;
     }
     .endereco{
         font-size: 7pt;
@@ -49,7 +52,7 @@
 
 </style>
 <% chaves.forEach(chave => { %>
-     <% if (chave.tipoimovel.descricao === "Casa") { %>
+     <% if (chave.tipoimovel.descricao === "Apartamento") { %>
       
         <div class="item-box-1">
             <p class="endereco"><%= chave.endereco %> - <%= chave.bairro.descricao %></p>  
@@ -60,7 +63,7 @@
         </div>
     <% } %>
 
-    <% if (chave.tipoimovel.descricao === "Apartamento") { %>
+    <% if (chave.tipoimovel.descricao === "Casa") { %>
       
         <div class="item-box-2">
             <p class="endereco"><%= chave.endereco %> - <%= chave.bairro.descricao %></p>  
@@ -69,8 +72,8 @@
             <p class="controles"><b>Controles: </b> <%= chave.qtdcontroles %></p>
             
         </div>
-    <% } %>
-    <% if (chave.tipoimovel.descricao === "Sala") { %>
+    <% } else { %>
+    
       
         <div class="item-box-3">
             <p class="endereco"><%= chave.endereco %> - <%= chave.bairro.descricao %></p>  
