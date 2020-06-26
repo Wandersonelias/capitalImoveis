@@ -21,10 +21,10 @@ router.post('/validar',(req,res)=>{
         };
         res.redirect('/emprestimos');
       }else{
-        res.redirect('/login');
+        res.redirect('/');
       }
     }else{
-      res.redirect('/login');
+      res.redirect('/');
     }
   });
 
